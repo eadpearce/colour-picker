@@ -21,15 +21,6 @@ $(function() {
   // e.g. $('input[type="range"]') elements.
   $('input[type="range"]').rangeslider();
 
-  // Destroy all plugin instances created from the
-  // e.g. $('input[type="range"]') elements.
-  // $('input[type="range"]').rangeslider('destroy');
-
-  // Update all rangeslider instances for all
-  // e.g. $('input[type="range"]') elements.
-  // Usefull if you changed some attributes e.g. `min` or `max` etc.
-  //$('input[type="range"]').rangeslider('update', true);
-
   $('input[type="range"]').rangeslider({
     // Feature detection the default is `true`.
     // Set this to `false` if you want to use
@@ -42,28 +33,26 @@ $(function() {
     outputRed = e.target.value;
     colourArray[1] = outputRed;
     // console.log(e.target.value);
-    outputColour = colourArray.join('');
-    $output.css('background', outputColour);
-    outputArray[1] = parseInt(outputRed).toString(16);
-    $output.html(outputArray.join(''));
+    getColour(1, outputRed);
   });
   $green.on('input', function(e) {
     outputGreen = e.target.value;
     colourArray[3] = outputGreen;
     // console.log(e.target.value);
-    outputColour = colourArray.join('');
-    $output.css('background', outputColour);
-    outputArray[2] = parseInt(outputGreen).toString(16);
-    $output.html(outputArray.join(''));
+    getColour(3, outputGreen);
   });
   $blue.on('input', function(e) {
     outputBlue = e.target.value;
     colourArray[5] = outputBlue;
     // console.log(e.target.value);
+    getColour(5, outputBlue);
+  });
+
+  function getColour(colourPos, colour) {
     outputColour = colourArray.join('');
     $output.css('background', outputColour);
-    outputArray[3] = parseInt(outputBlue).toString(16);
+    outputArray[colourPos] = parseInt(colour).toString(16);
     $output.html(outputArray.join(''));
-  });
+  }
 
 });
