@@ -5,15 +5,15 @@ $(function() {
   const $green = $('.green');
   const $output = $('.colour');
   // R is [1] G is [3] B is [5]
-  let colourArray = ['rgba(', '', ',', '', ',', '',',1)'];
-  let outputArray = ['#', 'ff', 'ff', 'ff'];
+  const colourArray = ['rgba(', '', ',', '', ',', '',',1)'];
+  const outputArray = ['#', 'ff', 'ff', 'ff'];
   $output.html(outputArray.join(''));
-  let $outputRed = 255;
-  let $outputGreen = 255;
-  let $outputBlue = 255;
-  colourArray[1] = $outputRed;
-  colourArray[3] = $outputGreen;
-  colourArray[5] = $outputBlue;
+  let outputRed = 255;
+  let outputGreen = 255;
+  let outputBlue = 255;
+  colourArray[1] = outputRed;
+  colourArray[3] = outputGreen;
+  colourArray[5] = outputBlue;
   let outputColour = colourArray.join('');
   $output.css('background', outputColour);
 
@@ -39,30 +39,30 @@ $(function() {
   });
 
   $red.on('input', function(e) {
-    $outputRed = e.target.value;
-    colourArray[1] = $outputRed;
+    outputRed = e.target.value;
+    colourArray[1] = outputRed;
     // console.log(e.target.value);
     outputColour = colourArray.join('');
     $output.css('background', outputColour);
-    outputArray[1] = parseInt($outputRed).toString(16);
+    outputArray[1] = parseInt(outputRed).toString(16);
     $output.html(outputArray.join(''));
   });
   $green.on('input', function(e) {
-    $outputGreen = e.target.value;
-    colourArray[3] = $outputGreen;
+    outputGreen = e.target.value;
+    colourArray[3] = outputGreen;
     // console.log(e.target.value);
     outputColour = colourArray.join('');
     $output.css('background', outputColour);
-    outputArray[2] = parseInt($outputGreen).toString(16);
+    outputArray[2] = parseInt(outputGreen).toString(16);
     $output.html(outputArray.join(''));
   });
   $blue.on('input', function(e) {
-    $outputBlue = e.target.value;
-    colourArray[5] = $outputBlue;
+    outputBlue = e.target.value;
+    colourArray[5] = outputBlue;
     // console.log(e.target.value);
     outputColour = colourArray.join('');
     $output.css('background', outputColour);
-    outputArray[3] = parseInt($outputBlue).toString(16);
+    outputArray[3] = parseInt(outputBlue).toString(16);
     $output.html(outputArray.join(''));
   });
 
