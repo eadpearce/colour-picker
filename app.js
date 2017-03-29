@@ -1,20 +1,33 @@
-$(function() {
+const rgbArray = ['rgba(', '', ',', '', ',', '',',1)'];
+const hexArray = ['#', 'ff', 'ff', 'ff'];
+// R is [1] G is [3] B is [5]
+const rgbPos = {
+  outputRed: 1,
+  outputGreen: 3,
+  outputBlue: 5
+};
+const hexPos = {
+  outputRed: 1,
+  outputGreen: 2,
+  outputBlue: 3
+};
+const outputRed = 255;
+const outputGreen = 255;
+const outputBlue = 255;
+let $red, $blue, $green, $output, outputColour;
 
-  const $red = $('.red');
-  const $blue = $('.blue');
-  const $green = $('.green');
-  const $output = $('.colour');
-  // R is [1] G is [3] B is [5]
-  const colourArray = ['rgba(', '', ',', '', ',', '',',1)'];
-  const outputArray = ['#', 'ff', 'ff', 'ff'];
-  $output.html(outputArray.join(''));
-  let outputRed = 255;
-  let outputGreen = 255;
-  let outputBlue = 255;
-  colourArray[1] = outputRed;
-  colourArray[3] = outputGreen;
-  colourArray[5] = outputBlue;
-  let outputColour = colourArray.join('');
+$(start);
+
+function start() {
+  $red = $('.red');
+  $blue = $('.blue');
+  $green = $('.green');
+  $output = $('.colour');
+  $output.html(hexArray.join(''));
+  rgbArray[rgbPos.outputRed] = outputRed;
+  rgbArray[rgbPos.outputGreen] = outputGreen;
+  rgbArray[rgbPos.outputBlue] = outputBlue;
+  outputColour = rgbArray.join('');
   $output.css('background', outputColour);
 
   // Initialize a new plugin instance for all
@@ -30,29 +43,21 @@ $(function() {
   });
 
   $red.on('input', function(e) {
-    outputRed = e.target.value;
-    colourArray[1] = outputRed;
-    // console.log(e.target.value);
-    getColour(1, outputRed);
+    getColour(rgbPos.outputRed, e.target.value, hexPos.outputRed);
   });
   $green.on('input', function(e) {
-    outputGreen = e.target.value;
-    colourArray[3] = outputGreen;
-    // console.log(e.target.value);
-    getColour(3, outputGreen);
+    getColour(rgbPos.outputGreen, e.target.value, hexPos.outputGreen);
   });
   $blue.on('input', function(e) {
-    outputBlue = e.target.value;
-    colourArray[5] = outputBlue;
-    // console.log(e.target.value);
-    getColour(5, outputBlue);
+    getColour(rgbPos.outputBlue, e.target.value, hexPos.outputBlue);
   });
 
-  function getColour(colourPos, colour) {
-    outputColour = colourArray.join('');
+  function getColour(colourPos, colour, hexPos) {
+    rgbArray[colourPos] = colour;
+    outputColour = rgbArray.join('');
     $output.css('background', outputColour);
-    outputArray[colourPos] = parseInt(colour).toString(16);
-    $output.html(outputArray.join(''));
+    hexArray[hexPos] = parseInt(colour).toString(16);
+    $output.html(hexArray.join(''));
   }
 
-});
+}
